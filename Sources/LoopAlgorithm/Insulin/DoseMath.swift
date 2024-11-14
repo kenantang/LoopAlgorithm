@@ -263,8 +263,9 @@ extension Array where Element: GlucoseValue {
         }
 
         // Choose either the minimum glucose or eventual glucose as the correction delta
-        let minGlucoseTargets = correctionRange.closestPrior(to: minGlucose.startDate)!.value
-        let eventualGlucoseTargets = correctionRange.closestPrior(to: eventualGlucose.startDate)!.value
+        // KT: Now the targets are taken from the current time point (date)
+        let minGlucoseTargets = correctionRange.closestPrior(to: date)!.value
+        let eventualGlucoseTargets = correctionRange.closestPrior(to: date)!.value
 
         // Treat the mininum glucose when both are below range
         if minGlucose.quantity < minGlucoseTargets.lowerBound &&
